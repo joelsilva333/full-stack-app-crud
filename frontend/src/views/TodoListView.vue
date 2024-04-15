@@ -37,73 +37,81 @@ onMounted(async () => {
 </script>
 
 <template>
-	<div class="main">
-		<h1>Lista de tarefas</h1>
+  <div class="main">
+    <h1>Lista de tarefas</h1>
 
-		<form @submit.prevent="formHandler">
-			<input type="text" v-model="newTaskTitle" />
-			<button type="submit">Adicionar Task</button>
-		</form>
+    <form @submit.prevent="formHandler">
+      <input
+        type="text"
+        v-model="newTaskTitle" />
+      <button type="submit">Adicionar Task</button>
+    </form>
 
-		<table>
-			<thead>
-				<th>Título</th>
-				<th>Data</th>
-				<th>Estado</th>
-				<th>Ações</th>
-			</thead>
-			<tbody>
-				<tr v-for="task in tasks" :key="task.id">
-					<td>
-						<div v-if="editMode === task.id">
-							<input type="text" v-model="task.title" />
-						</div>
-						<div v-else>
-							{{ task.title }}
-						</div>
-					</td>
-					<td>{{ task.created_at }}</td>
-					<td>
-						<div v-if="editMode === task.id">
-							<select v-model="task.status">
-								<option value="pendente">pendente</option>
-								<option value="em andamento">em andamento</option>
-								<option value="concluída">concluída</option>
-							</select>
-						</div>
-						<div v-else>
-							<select v-model="task.status" disabled>
-								<option value="pendente">pendente</option>
-								<option value="em andamento">em andamento</option>
-								<option value="concluída">concluída</option>
-							</select>
-						</div>
-					</td>
-					<td>
-						<div v-if="editMode === task.id">
-							<button @click="updateTaskHandler(task)">Salvar</button>
-							<button @click="cancelEdit">Cancelar</button>
-						</div>
+    <table>
+      <thead>
+        <th>Título</th>
+        <th>Data</th>
+        <th>Estado</th>
+        <th>Ações</th>
+      </thead>
+      <tbody>
+        <tr
+          v-for="task in tasks"
+          :key="task.id">
+          <td>
+            <div v-if="editMode === task.id">
+              <input
+                type="text"
+                v-model="task.title" />
+            </div>
+            <div v-else>
+              {{ task.title }}
+            </div>
+          </td>
+          <td>{{ task.created_at }}</td>
+          <td>
+            <div v-if="editMode === task.id">
+              <select v-model="task.status">
+                <option value="pendente">pendente</option>
+                <option value="em andamento">em andamento</option>
+                <option value="concluída">concluída</option>
+              </select>
+            </div>
+            <div v-else>
+              <select
+                v-model="task.status"
+                disabled>
+                <option value="pendente">pendente</option>
+                <option value="em andamento">em andamento</option>
+                <option value="concluída">concluída</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div v-if="editMode === task.id">
+              <button @click="updateTaskHandler(task)">Salvar</button>
+              <button @click="cancelEdit">Cancelar</button>
+            </div>
 
-						<div v-else>
-							<button @click="editMode = task.id">Editar</button>
+            <div v-else>
+              <button @click="editMode = task.id">Editar</button>
 
-							<button @click="deleteTaskHandler(task.id)">Excluir</button>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+              <button @click="deleteTaskHandler(task.id)">Excluir</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <style scoped>
 .main {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 80vh;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
 }
 </style>
