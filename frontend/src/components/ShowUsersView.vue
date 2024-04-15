@@ -1,26 +1,5 @@
 <script setup>
-defineProps({
-  nome: {
-    type: String,
-    required: true,
-  },
-  sobrenome: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-    required: true,
-  },
-  fecharDetalhes: {
-    type: Function,
-    required: true,
-  },
-});
+
 </script>
 
 <template>
@@ -28,14 +7,12 @@ defineProps({
     <h1>Detalhes</h1>
 
     <div class="details-container">
-      <p>Nome: {{ nome }}</p>
-      <p>Sobrenome: {{ sobrenome }}</p>
-      <p>Email: {{ email }}</p>
+      <p>Nome: </p>
+      <p>Sobrenome: </p>
+      <p>Email: </p>
 
       <img :src="image" alt="" />
     </div>
-
-    <button @click="fecharDetalhes">Baixar</button>
   </div>
 </template>
 
