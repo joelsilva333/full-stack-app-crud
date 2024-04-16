@@ -1,25 +1,19 @@
-const connection = require("./connection");
+const connection = require("./connection")
 
 const getAllUsers = async () => {
-  const [users] = await connection.execute("SELECT * FROM users");
+	const [users] = await connection.execute("SELECT * FROM users")
 
-  return users;
-};
+	return users
+}
 
 const createUser = async (user) => {
-  const { name, surname, email, photo } = user;
+	const { name, surname, email } = user
 
-  const query =
-    "INSERT INTO users (name, surname, email, photo) VALUES (?, ?, ?, ?)";
+	const query = "INSERT INTO users (name, surname, email) VALUES (?, ?, ?)"
 
-  const [createdUser] = await connection.execute(query, [
-    name,
-    surname,
-    email,
-    photo,
-  ]);
+	const [createdUser] = await connection.execute(query, [name, surname, email])
 
-  return { insertId: createdUser.insertId };
-};
+	return { insertId: createdUser.insertId }
+}
 
-module.exports = { getAllUsers, createUser };
+module.exports = { getAllUsers, createUser }
